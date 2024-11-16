@@ -16,27 +16,29 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
-     <widget class="QGraphicsView" name="graphicsView"/>
+     <widget class="QWidget" name="visualizationWidget" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout"/>
+     </widget>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout">
+     <layout class="QVBoxLayout" name="graphActions">
       <item>
-       <widget class="QWidget" name="widget_3" native="true">
+       <widget class="QWidget" name="dijkstraActionsWidget" native="true">
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <layout class="QGridLayout" name="gridLayout" rowstretch="0,0">
+          <layout class="QGridLayout" name="dijkstraActionsGrid" rowstretch="0,0">
            <property name="sizeConstraint">
             <enum>QLayout::SizeConstraint::SetNoConstraint</enum>
            </property>
            <item row="0" column="0">
-            <widget class="QLabel" name="label">
+            <widget class="QLabel" name="startVertexLabel">
              <property name="text">
               <string>Начальная вершина</string>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QComboBox" name="comboBox">
+            <widget class="QComboBox" name="startVertexComboBox">
              <property name="currentText">
               <string/>
              </property>
@@ -46,14 +48,14 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLabel" name="label_2">
+            <widget class="QLabel" name="endVertexLabel">
              <property name="text">
               <string>Конечная вершина</string>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QComboBox" name="comboBox_2">
+            <widget class="QComboBox" name="endVertexComboBox">
              <property name="placeholderText">
               <string>Выберите вершину</string>
              </property>
@@ -65,7 +67,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="widget_4" native="true">
+       <widget class="QWidget" name="startPathFindingWidget" native="true">
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
           <widget class="QPushButton" name="pushButton_5">
@@ -78,17 +80,17 @@
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="widget" native="true">
+       <widget class="QWidget" name="addActionsWidget" native="true">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QPushButton" name="pushButton_6">
+          <widget class="QPushButton" name="addEdgeButton">
            <property name="text">
             <string>Добавить ребро</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_7">
+          <widget class="QPushButton" name="addVertexButton">
            <property name="text">
             <string>Добавить узел</string>
            </property>
@@ -98,24 +100,24 @@
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="widget_2" native="true">
+       <widget class="QWidget" name="resetActionsWidget" native="true">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="removeEdgeButton">
            <property name="text">
             <string>Удалить ребро</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="removeVertexButton">
            <property name="text">
             <string>Удалить узел</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="resetGraphButton">
            <property name="text">
             <string>Сброс графа</string>
            </property>
@@ -134,7 +136,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

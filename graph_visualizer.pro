@@ -10,16 +10,14 @@ CONFIG += c++17
 
 SOURCES += \
     edge.cpp \
-    graph.cpp \
-    graphscene.cpp \
+    graphview.cpp \
     main.cpp \
     mainwindow.cpp \
     vertex.cpp
 
 HEADERS += \
     edge.h \
-    graph.h \
-    graphscene.h \
+    graphview.h \
     mainwindow.h \
     vertex.h
 

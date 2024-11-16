@@ -1,13 +1,24 @@
 #ifndef EDGE_H
 #define EDGE_H
 
-class Edge
+#include <vertex.h>
+class Edge: public QGraphicsItem
 {
+    Q_INTERFACES(QGraphicsItem)
+    unsigned length = 0;
+    Vertex* vertex1 = nullptr;
+    Vertex* vertex2 = nullptr;
 public:
-    int vertexID1;
-    int vertexID2;
-    int value;
-    Edge(int, int, int);
+    Edge(Vertex* v1, Vertex* v2, unsigned length);
+
+    unsigned getLength();
+    Vertex *getVertex1() const;
+
+    Vertex *getVertex2() const;
+
+protected:
+    QRectF boundingRect() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 };
 
 #endif // EDGE_H

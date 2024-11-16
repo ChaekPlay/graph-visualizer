@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <graphview.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -16,6 +17,10 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    GraphView* graph = nullptr;
+
+private slots:
+    void on_addVertexButton_clicked();
 
 private:
     Ui::MainWindow *ui;

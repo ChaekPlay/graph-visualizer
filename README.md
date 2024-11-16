@@ -1,2 +1,1 @@
-# graph-visualizer
-Graph Visualizer with path finding written in Qt 6
+# Визуализация графа на Qt 6

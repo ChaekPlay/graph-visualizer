@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSpinBox>
 #include <graphview.h>
 
 QT_BEGIN_NAMESPACE
@@ -21,6 +22,14 @@ public:
 
 private slots:
     void on_addVertexButton_clicked();
+
+    void on_addEdgeButton_clicked();
+
+    void on_removeEdgeButton_clicked();
+
+    void on_removeVertexButton_clicked();
+
+    void on_resetGraphButton_clicked();
 
 private:
     Ui::MainWindow *ui;

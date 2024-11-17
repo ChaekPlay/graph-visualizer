@@ -1,10 +1,11 @@
 #include "vertex.h"
-
+#include "edge.h"
 Vertex::Vertex(int id) {
     this->id = id;
     setFlags(ItemIsSelectable | ItemIsMovable);
     setFlag(ItemSendsGeometryChanges);
     setCacheMode(DeviceCoordinateCache);
+    setZValue(+1);
 }
 
 void Vertex::addEdge(Edge* edge) {
@@ -31,6 +32,32 @@ QRectF Vertex::boundingRect() const {
     // TODO: тестовые значения
     qreal adjust = 20;
     return QRectF( -15 - adjust, -15 - adjust, 33 + adjust, 33 + adjust);
+}
+
+void Vertex::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    update();
+    QGraphicsItem::mousePressEvent(event);
+}
+
+void Vertex::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    update();
+    QGraphicsItem::mouseReleaseEvent(event);
+}
+
+QVariant Vertex::itemChange(GraphicsItemChange change, const QVariant &value)
+{
+    switch (change) {
+    case ItemPositionHasChanged:
+        foreach (Edge *edge, edges)
+            edge->updateInScene();
+        break;
+    default:
+        break;
+    }
+
+    return QGraphicsItem::itemChange(change, value);
 }
 
 void Vertex::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *) {

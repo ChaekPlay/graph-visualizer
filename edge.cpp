@@ -12,6 +12,7 @@ Vertex *Edge::getVertex2() const
 
 QRectF Edge::boundingRect() const
 {
+    //TODO: поменять временные значения
     if (!vertex1 || !vertex2) return QRectF();
 
     qreal penWidth = 2;
@@ -21,6 +22,10 @@ QRectF Edge::boundingRect() const
                                       vertex2->pos().y() - vertex1->pos().y()))
         .normalized()
         .adjusted(-extra, -extra, extra, extra);
+}
+
+void Edge::updateInScene() {
+    update();
 }
 
 Edge::Edge(Vertex* v1, Vertex* v2, unsigned length) {

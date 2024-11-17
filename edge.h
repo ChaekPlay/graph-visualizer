@@ -13,9 +13,8 @@ public:
 
     unsigned getLength();
     Vertex *getVertex1() const;
-
     Vertex *getVertex2() const;
-
+    void updateInScene();
 protected:
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);

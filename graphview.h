@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <vertex.h>
 #include <edge.h>
+#include <dijkstraalgorithm.h>
 
 class GraphView : public QGraphicsView
 {
@@ -12,6 +13,7 @@ private:
     QGraphicsScene* scene = nullptr;
     int currentVertexIndex = 0;
     QList<Vertex*> vertices = {};
+    DijkstraAlgorithm algorithm;
 public:
     explicit GraphView(QWidget *parent = 0);
     void addVertex();
@@ -21,6 +23,7 @@ public:
     bool edgeExists(Vertex* v1, Vertex* v2);
     Edge* findEdge(Vertex* v1, Vertex* v2);
     void clear();
+    void dijkstraAlgorithm(Vertex* v1, Vertex* v2);
     QGraphicsScene *getScene() const;
 // public slots:
 //     void deleteSelectedItems();

@@ -92,3 +92,18 @@ void MainWindow::on_resetGraphButton_clicked()
     graph->clear();
 }
 
+
+void MainWindow::on_startPathFindingButton_clicked()
+{
+    QMessageBox msg;
+    if(graph->getScene()->selectedItems().length() != 2) {
+        msg.setText("Необходимо выбрать 2 вершины на графе с помощью клавиши Ctrl");
+        msg.exec();
+        return;
+    }
+    // TODO: проверка на тип
+    Vertex* vertex1 = dynamic_cast<Vertex*>(graph->getScene()->selectedItems()[0]);
+    Vertex* vertex2 = dynamic_cast<Vertex*>(graph->getScene()->selectedItems()[1]);
+    graph->dijkstraAlgorithm(vertex1, vertex2);
+}
+

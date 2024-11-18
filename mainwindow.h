@@ -31,6 +31,8 @@ private slots:
 
     void on_resetGraphButton_clicked();
 
+    void on_startPathFindingButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

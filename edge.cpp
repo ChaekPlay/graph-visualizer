@@ -38,6 +38,11 @@ Edge::Edge(Vertex* v1, Vertex* v2, unsigned length) {
     setCacheMode(DeviceCoordinateCache);
 }
 
+unsigned int Edge::getLength()
+{
+    return length;
+}
+
 void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget*) {
     if (!vertex1 || !vertex2) return;
     painter->setRenderHint(QPainter::Antialiasing);

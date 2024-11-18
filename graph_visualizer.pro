@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    dijkstraalgorithm.cpp \
     edge.cpp \
     graphview.cpp \
     main.cpp \
@@ -16,6 +17,7 @@ SOURCES += \
     vertex.cpp
 
 HEADERS += \
+    dijkstraalgorithm.h \
     edge.h \
     graphview.h \
     mainwindow.h \
@@ -30,4 +32,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    README.md
+    README.md \
+    icon.ico
+
+RC_ICONS = icon.ico

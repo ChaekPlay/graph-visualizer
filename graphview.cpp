@@ -78,3 +78,18 @@ void GraphView::clear() {
     vertices.clear();
     scene->clear();
 }
+
+void GraphView::dijkstraAlgorithm(Vertex *v1, Vertex *v2)
+{
+    // TODO: использовать посчитанные результаты алгоритма пока граф не изменится
+    QList<Vertex*> path = algorithm.run(vertices, v1, v2);
+    if(path.isEmpty()) {
+        QMessageBox msg;
+        msg.setText("Между вершинами нет пути");
+        msg.exec();
+        return;
+    }
+    foreach(Vertex* vertex, path) {
+        vertex->setSelected(true);
+    }
+}

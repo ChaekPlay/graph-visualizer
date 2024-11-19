@@ -7,7 +7,7 @@ class DijkstraAlgorithm
 {
 public:
     DijkstraAlgorithm();
-    QList<Vertex *> run(QList<Vertex*> vertices, Vertex* vertex1, Vertex* vertex2);
+    QPair<QList<Vertex *>, int> run(QList<Vertex*> vertices, Vertex* vertex1, Vertex* vertex2);
 };
 
 #endif // DIJKSTRAALGORITHM_H

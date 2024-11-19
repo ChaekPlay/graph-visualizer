@@ -1,4 +1,5 @@
 #include "edge.h"
+#include "styles.h"
 
 Vertex* Edge::getVertex1() const
 {
@@ -43,16 +44,24 @@ unsigned int Edge::getLength()
     return length;
 }
 
+void Edge::setLength(unsigned int length)
+{
+    this->length = length;
+    updateInScene();
+}
+
 void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget*) {
     if (!vertex1 || !vertex2) return;
     painter->setRenderHint(QPainter::Antialiasing);
     QPointF src = vertex1->pos();
     QPointF dst = vertex2->pos();
     QLineF line(src, dst);
-    painter->setPen(QPen(Qt::black, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+    painter->setPen(QPen(Styles::EDGE_COLOR, Styles::LINE_THICKNESS, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
     painter->drawLine(line);
+    painter->setPen(QPen(Styles::EDGE_FONT_COLOR));
     QFont font;
-    font.setPixelSize(15);
+    font.setPixelSize(Styles::FONT_SIZE);
+    font.setBold(true);
     painter->setFont(font);
     QPointF bottom = {(src.rx()+dst.rx())/2, (src.ry()+dst.ry())/2-20};
     painter->drawText(bottom, QString::number(length));

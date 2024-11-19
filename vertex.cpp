@@ -1,5 +1,6 @@
 #include "vertex.h"
 #include "edge.h"
+#include "styles.h"
 Vertex::Vertex(int id) {
     this->id = id;
     setFlags(ItemIsSelectable | ItemIsMovable);
@@ -31,7 +32,7 @@ QList<Edge*> Vertex::getEdges() {
 QRectF Vertex::boundingRect() const {
     // TODO: тестовые значения
     qreal adjust = 20;
-    return QRectF( -15 - adjust, -15 - adjust, 33 + adjust, 33 + adjust);
+    return QRectF( -Styles::CIRCLE_SIZE/2 - adjust, -Styles::CIRCLE_SIZE/2 - adjust, Styles::CIRCLE_SIZE+Styles::BORDER_SIZE + adjust, Styles::CIRCLE_SIZE+Styles::BORDER_SIZE + adjust);
 }
 
 void Vertex::mousePressEvent(QGraphicsSceneMouseEvent *event)
@@ -63,15 +64,19 @@ QVariant Vertex::itemChange(GraphicsItemChange change, const QVariant &value)
 void Vertex::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *) {
     if (option->state & QStyle::State_Selected)
     {
-        painter->setBrush(QColor(254, 254, 34, 255));
+        painter->setBrush(Styles::VERTEX_SELECTED_FILL_COLOR);
     }
     else
     {
-        painter->setBrush(QColor(191, 255, 148, 255));
+        painter->setBrush(Styles::VERTEX_FILL_COLOR);
     }
-    painter->setPen(QPen(QColor(130, 180, 130, 255), 3));
-    painter->drawEllipse(-15, -15, 30, 30);
-    painter->setPen(QPen(Qt::black));
+    painter->setPen(QPen(Styles::VERTEX_BORDER_COLOR, Styles::BORDER_SIZE));
+    painter->drawEllipse(-Styles::CIRCLE_SIZE/2, -Styles::CIRCLE_SIZE/2, Styles::CIRCLE_SIZE, Styles::CIRCLE_SIZE);
+    painter->setPen(QPen(Styles::VERTEX_FONT_COLOR));
+    QFont font;
+    font.setPixelSize(Styles::FONT_SIZE);
+    font.setBold(true);
+    painter->setFont(font);
     QString text = QString::number(id);
-    painter->drawText(-20, -20, text);
+    painter->drawText(-Styles::FONT_SIZE/4, Styles::FONT_SIZE/4, text);
 }

@@ -50,6 +50,13 @@
           </widget>
          </item>
          <item>
+          <widget class="QPushButton" name="editEdgeLength">
+           <property name="text">
+            <string>Изменить длину ребра</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="addVertexButton">
            <property name="text">
             <string>Добавить узел</string>

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QSpinBox>
+#include <setnumberdialog.h>
 #include <graphview.h>
 
 QT_BEGIN_NAMESPACE
@@ -32,6 +33,8 @@ private slots:
     void on_resetGraphButton_clicked();
 
     void on_startPathFindingButton_clicked();
+
+    void on_editEdgeLength_clicked();
 
 private:
     Ui::MainWindow *ui;

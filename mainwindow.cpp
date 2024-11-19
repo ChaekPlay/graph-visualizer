@@ -48,12 +48,13 @@ void MainWindow::on_addEdgeButton_clicked()
         msg.exec();
         return;
     }
-    msg.setText("Введите длину ребра");
-    QSpinBox* lengthSpinBox = new QSpinBox();
-    lengthSpinBox->setRange(0, 1000);
-    msg.layout()->addWidget(lengthSpinBox);
-    msg.exec();
-    graph->addEdge(vertex1, vertex2, lengthSpinBox->value());
+    SetNumberDialog dialog;
+    dialog.setText("Введите длину ребра:");
+    int code = dialog.exec(); //=("Введите длину ребра");
+    if (code == QDialog::Accepted) {
+        int value = dialog.getValue();
+        graph->addEdge(vertex1, vertex2, value);
+    }
 }
 
 
@@ -105,5 +106,34 @@ void MainWindow::on_startPathFindingButton_clicked()
     Vertex* vertex1 = dynamic_cast<Vertex*>(graph->getScene()->selectedItems()[0]);
     Vertex* vertex2 = dynamic_cast<Vertex*>(graph->getScene()->selectedItems()[1]);
     graph->dijkstraAlgorithm(vertex1, vertex2);
+}
+
+
+void MainWindow::on_editEdgeLength_clicked()
+{
+    QMessageBox msg;
+    if(graph->getScene()->selectedItems().length() != 2) {
+        msg.setText("Необходимо выбрать 2 вершины на графе с помощью клавиши Ctrl");
+        msg.exec();
+        return;
+    }
+    // TODO: проверка на тип
+    Vertex* vertex1 = dynamic_cast<Vertex*>(graph->getScene()->selectedItems()[0]);
+    Vertex* vertex2 = dynamic_cast<Vertex*>(graph->getScene()->selectedItems()[1]);
+    if(!graph->edgeExists(vertex1, vertex2))
+    {
+        msg.setText("Ребра между вершинами не существует");
+        msg.exec();
+        return;
+    }
+    Edge* edge = graph->findEdge(vertex1, vertex2);
+    SetNumberDialog dialog;
+    dialog.setText("Введите длину ребра:");
+    dialog.setValue(edge->getLength());
+    int code = dialog.exec();
+    if (code == QDialog::Accepted) {
+        int value = dialog.getValue();
+        edge->setLength(value);
+    }
 }
 

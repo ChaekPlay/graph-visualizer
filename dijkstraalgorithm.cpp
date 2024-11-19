@@ -3,7 +3,7 @@
 
 DijkstraAlgorithm::DijkstraAlgorithm() {}
 
-QList<Vertex *> DijkstraAlgorithm::run(QList<Vertex *> vertices, Vertex *vertex1, Vertex *vertex2)
+QPair<QList<Vertex *>, int> DijkstraAlgorithm::run(QList<Vertex *> vertices, Vertex *vertex1, Vertex *vertex2)
 {
     QMap<int, Vertex*> verticesMap;
     foreach(Vertex* vertex, vertices) {
@@ -56,5 +56,5 @@ QList<Vertex *> DijkstraAlgorithm::run(QList<Vertex *> vertices, Vertex *vertex1
         shortestPath.append(dst);
     }
     std::reverse(shortestPath.begin(), shortestPath.end());
-    return shortestPath;
+    return QPair<QList<Vertex *>, int>(shortestPath, shortestDistance[vertex2->getID()]);
 }

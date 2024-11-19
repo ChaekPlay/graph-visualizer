@@ -14,6 +14,7 @@ SOURCES += \
     graphview.cpp \
     main.cpp \
     mainwindow.cpp \
+    setnumberdialog.cpp \
     vertex.cpp
 
 HEADERS += \
@@ -21,10 +22,13 @@ HEADERS += \
     edge.h \
     graphview.h \
     mainwindow.h \
+    setnumberdialog.h \
+    styles.h \
     vertex.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    setnumberdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

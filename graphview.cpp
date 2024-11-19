@@ -81,14 +81,17 @@ void GraphView::clear() {
 
 void GraphView::dijkstraAlgorithm(Vertex *v1, Vertex *v2)
 {
-    // TODO: использовать посчитанные результаты алгоритма пока граф не изменится
-    QList<Vertex*> path = algorithm.run(vertices, v1, v2);
+    QPair<QList<Vertex *>, int> result = algorithm.run(vertices, v1, v2);
+    QList<Vertex *> path = result.first;
+    int shortestDistance = result.second;
+    QMessageBox msg;
     if(path.isEmpty()) {
-        QMessageBox msg;
         msg.setText("Между вершинами нет пути");
         msg.exec();
         return;
     }
+    msg.setText("Путь найден! Кратчайшее расстояние между вершинами: "+QString::number(shortestDistance));
+    msg.exec();
     foreach(Vertex* vertex, path) {
         vertex->setSelected(true);
     }

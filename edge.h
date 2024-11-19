@@ -12,6 +12,7 @@ public:
     Edge(Vertex* v1, Vertex* v2, unsigned length);
 
     unsigned getLength();
+    void setLength(unsigned length);
     Vertex *getVertex1() const;
     Vertex *getVertex2() const;
     void updateInScene();

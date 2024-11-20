@@ -13,12 +13,10 @@ Vertex *Edge::getVertex2() const
 
 QRectF Edge::boundingRect() const
 {
-    //TODO: поменять временные значения
     if (!vertex1 || !vertex2) return QRectF();
-
-    qreal penWidth = 2;
-    qreal extra = (penWidth)+60;
-
+    // В некоторых положениях без искусственного увеличения текст над ребром может плыть или пропадать
+    // Здесь описан фикс этих графических артефактов
+    qreal extra = (Styles::LINE_THICKNESS)+Styles::FONT_SIZE*4;
     return QRectF(vertex1->pos(), QSizeF(vertex2->pos().x() - vertex1->pos().x(),
                                       vertex2->pos().y() - vertex1->pos().y()))
         .normalized()

@@ -79,7 +79,7 @@
          <item>
           <widget class="QPushButton" name="removeVertexButton">
            <property name="text">
-            <string>Удалить узел</string>
+            <string>Удалить узлы</string>
            </property>
           </widget>
          </item>

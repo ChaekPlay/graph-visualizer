@@ -3,9 +3,11 @@
 
 #include <QGraphicsView>
 #include <QMessageBox>
+#include <QKeyEvent>
 #include <vertex.h>
 #include <edge.h>
 #include <dijkstraalgorithm.h>
+#include <styles.h>
 
 class GraphView : public QGraphicsView
 {
@@ -25,14 +27,13 @@ public:
     void clear();
     void dijkstraAlgorithm(Vertex* v1, Vertex* v2);
     QGraphicsScene *getScene() const;
-// public slots:
-//     void deleteSelectedItems();
-
+    void deleteSelectedItems();
 
     QList<Vertex *> getVertices() const;
 
 protected:
     void resizeEvent(QResizeEvent *event);
+    void keyPressEvent(QKeyEvent* event);
 };
 
 #endif // GRAPHVIEW_H

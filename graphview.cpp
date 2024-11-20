@@ -5,6 +5,15 @@ QGraphicsScene *GraphView::getScene() const
     return scene;
 }
 
+void GraphView::deleteSelectedItems()
+{
+    foreach(QGraphicsItem* item, scene->selectedItems()) {
+        if(Vertex* vertex = dynamic_cast<Vertex*>(item)) {
+            deleteVertex(vertex);
+        }
+    }
+}
+
 QList<Vertex *> GraphView::getVertices() const
 {
     return vertices;
@@ -14,6 +23,7 @@ GraphView::GraphView(QWidget *parent): QGraphicsView(parent)
 {
     scene = new QGraphicsScene(this);
     setScene(scene);
+    scene->setSceneRect(0, 0, width()-2, height()-2);
 }
 
 void GraphView::resizeEvent(QResizeEvent *event)
@@ -22,12 +32,19 @@ void GraphView::resizeEvent(QResizeEvent *event)
     QGraphicsView::resizeEvent(event);
 }
 
+void GraphView::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key() == Qt::Key_Delete) {
+        deleteSelectedItems();
+    }
+}
+
 void GraphView::addVertex() {
     Vertex* vertex = new Vertex(currentVertexIndex++);
     scene->addItem(vertex);
     vertices.append(vertex);
     // TODO: поменять логику расположения вершин (мб ставить в (0,0), хз)
-    vertex->setPos(QPointF(50+currentVertexIndex*10, 50+currentVertexIndex*10));
+    vertex->setPos(QPointF(Styles::CIRCLE_SIZE+currentVertexIndex*10, Styles::CIRCLE_SIZE+currentVertexIndex*10));
     update();
 }
 
@@ -36,6 +53,7 @@ void GraphView::deleteVertex(Vertex* vertex) {
         deleteEdge(edge);
     }
     scene->removeItem(vertex);
+    vertices.removeOne(vertex);
     delete vertex;
     update();
 }
@@ -77,6 +95,7 @@ void GraphView::clear() {
     }
     vertices.clear();
     scene->clear();
+    currentVertexIndex = 0;
 }
 
 void GraphView::dijkstraAlgorithm(Vertex *v1, Vertex *v2)

@@ -37,11 +37,13 @@ void MainWindow::on_addEdgeButton_clicked()
         msg.exec();
         return;
     }
-
-    // TODO: проверка на тип
     Vertex* vertex1 = dynamic_cast<Vertex*>(graph->getScene()->selectedItems()[0]);
     Vertex* vertex2 = dynamic_cast<Vertex*>(graph->getScene()->selectedItems()[1]);
-    // WARNING: возможно вылетает, надо тестить
+    if(!vertex1 || !vertex2) {
+        msg.setText("Необходимо выбрать 2 вершины на графе с помощью клавиши Ctrl");
+        msg.exec();
+        return;
+    }
     if(graph->edgeExists(vertex1, vertex2))
     {
         msg.setText("Ребро между вершинами уже существует");
@@ -66,9 +68,19 @@ void MainWindow::on_removeEdgeButton_clicked()
         msg.exec();
         return;
     }
-    // TODO: проверка на тип
     Vertex* vertex1 = dynamic_cast<Vertex*>(graph->getScene()->selectedItems()[0]);
     Vertex* vertex2 = dynamic_cast<Vertex*>(graph->getScene()->selectedItems()[1]);
+    if(!vertex1 || !vertex2) {
+        msg.setText("Необходимо выбрать 2 вершины на графе с помощью клавиши Ctrl");
+        msg.exec();
+        return;
+    }
+    if(!graph->edgeExists(vertex1, vertex2))
+    {
+        msg.setText("Ребра между вершинами не существует");
+        msg.exec();
+        return;
+    }
     Edge* edge = graph->findEdge(vertex1, vertex2);
     if(edge)
         graph->deleteEdge(edge);
@@ -77,14 +89,7 @@ void MainWindow::on_removeEdgeButton_clicked()
 
 void MainWindow::on_removeVertexButton_clicked()
 {
-    QMessageBox msg;
-    if(graph->getScene()->selectedItems().length() != 1) {
-        msg.setText("Необходимо выбрать только 1 вершину");
-        msg.exec();
-        return;
-    }
-    Vertex* vertex = dynamic_cast<Vertex*>(graph->getScene()->selectedItems()[0]);
-    graph->deleteVertex(vertex);
+    graph->deleteSelectedItems();
 }
 
 
@@ -102,9 +107,13 @@ void MainWindow::on_startPathFindingButton_clicked()
         msg.exec();
         return;
     }
-    // TODO: проверка на тип
     Vertex* vertex1 = dynamic_cast<Vertex*>(graph->getScene()->selectedItems()[0]);
     Vertex* vertex2 = dynamic_cast<Vertex*>(graph->getScene()->selectedItems()[1]);
+    if(!vertex1 || !vertex2) {
+        msg.setText("Необходимо выбрать 2 вершины на графе с помощью клавиши Ctrl");
+        msg.exec();
+        return;
+    }
     graph->dijkstraAlgorithm(vertex1, vertex2);
 }
 
@@ -117,9 +126,13 @@ void MainWindow::on_editEdgeLength_clicked()
         msg.exec();
         return;
     }
-    // TODO: проверка на тип
     Vertex* vertex1 = dynamic_cast<Vertex*>(graph->getScene()->selectedItems()[0]);
     Vertex* vertex2 = dynamic_cast<Vertex*>(graph->getScene()->selectedItems()[1]);
+    if(!vertex1 || !vertex2) {
+        msg.setText("Необходимо выбрать 2 вершины на графе с помощью клавиши Ctrl");
+        msg.exec();
+        return;
+    }
     if(!graph->edgeExists(vertex1, vertex2))
     {
         msg.setText("Ребра между вершинами не существует");

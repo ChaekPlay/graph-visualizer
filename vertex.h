@@ -4,6 +4,7 @@
 #include <QPen>
 #include <QPainter>
 #include <QStyleOptionGraphicsItem>
+#include <QGraphicsScene>
 class Edge;
 
 class Vertex: public QGraphicsItem

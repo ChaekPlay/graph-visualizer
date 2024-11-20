@@ -49,15 +49,21 @@ void Vertex::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
 QVariant Vertex::itemChange(GraphicsItemChange change, const QVariant &value)
 {
-    switch (change) {
-    case ItemPositionHasChanged:
+    if (change == ItemPositionChange && scene()) {
+        // value это новое положение.
+        QPointF newPos = value.toPointF();
+        QRectF rect = scene()->sceneRect();
+        if (!rect.contains(newPos)) {
+            // Сохраняем элемент внутри прямоугольника сцены.
+            newPos.setX(qMin(rect.right(), qMax(newPos.x(), rect.left())));
+            newPos.setY(qMin(rect.bottom(), qMax(newPos.y(), rect.top())));
+            foreach (Edge *edge, edges)
+                edge->updateInScene();
+            return newPos;
+        }
         foreach (Edge *edge, edges)
             edge->updateInScene();
-        break;
-    default:
-        break;
     }
-
     return QGraphicsItem::itemChange(change, value);
 }
 

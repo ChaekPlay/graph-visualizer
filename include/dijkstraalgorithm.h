@@ -1,7 +1,7 @@
 #ifndef DIJKSTRAALGORITHM_H
 #define DIJKSTRAALGORITHM_H
 
-#include <vertex.h>
+#include <include/vertex.h>
 
 class DijkstraAlgorithm
 {

@@ -3,8 +3,8 @@
 
 #include <QMainWindow>
 #include <QSpinBox>
-#include <setnumberdialog.h>
-#include <graphview.h>
+#include <include/setnumberdialog.h>
+#include <include/graphview.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

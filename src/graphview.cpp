@@ -1,4 +1,4 @@
-#include "graphview.h"
+#include "include/graphview.h"
 
 QGraphicsScene *GraphView::getScene() const
 {
@@ -43,7 +43,6 @@ void GraphView::addVertex() {
     Vertex* vertex = new Vertex(currentVertexIndex++);
     scene->addItem(vertex);
     vertices.append(vertex);
-    // TODO: поменять логику расположения вершин (мб ставить в (0,0), хз)
     vertex->setPos(QPointF(Styles::CIRCLE_SIZE+currentVertexIndex*10, Styles::CIRCLE_SIZE+currentVertexIndex*10));
     update();
 }
@@ -89,13 +88,14 @@ void GraphView::deleteEdge(Edge *edge)
 };
 
 void GraphView::clear() {
+    currentVertexIndex = 0;
     if(vertices.length() == 0) return;
     for(Vertex* vertex: vertices) {
         deleteVertex(vertex);
     }
     vertices.clear();
+    scene->clearSelection();
     scene->clear();
-    currentVertexIndex = 0;
 }
 
 void GraphView::dijkstraAlgorithm(Vertex *v1, Vertex *v2)

@@ -1,7 +1,7 @@
 #ifndef EDGE_H
 #define EDGE_H
 
-#include <vertex.h>
+#include <include/vertex.h>
 class Edge: public QGraphicsItem
 {
     Q_INTERFACES(QGraphicsItem)

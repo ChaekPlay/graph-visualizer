@@ -1,5 +1,5 @@
-#include "dijkstraalgorithm.h"
-#include "edge.h"
+#include "include/dijkstraalgorithm.h"
+#include "include/edge.h"
 
 DijkstraAlgorithm::DijkstraAlgorithm() {}
 

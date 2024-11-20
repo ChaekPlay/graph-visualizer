@@ -1,6 +1,6 @@
-#include "vertex.h"
-#include "edge.h"
-#include "styles.h"
+#include "include/vertex.h"
+#include "include/edge.h"
+#include "include/styles.h"
 Vertex::Vertex(int id) {
     this->id = id;
     setFlags(ItemIsSelectable | ItemIsMovable);
@@ -30,7 +30,6 @@ QList<Edge*> Vertex::getEdges() {
 }
 
 QRectF Vertex::boundingRect() const {
-    // TODO: тестовые значения
     qreal adjust = 20;
     return QRectF( -Styles::CIRCLE_SIZE/2 - adjust, -Styles::CIRCLE_SIZE/2 - adjust, Styles::CIRCLE_SIZE+Styles::BORDER_SIZE + adjust, Styles::CIRCLE_SIZE+Styles::BORDER_SIZE + adjust);
 }
@@ -50,7 +49,7 @@ void Vertex::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 QVariant Vertex::itemChange(GraphicsItemChange change, const QVariant &value)
 {
     if (change == ItemPositionChange && scene()) {
-        // value это новое положение.
+        // Получаем новое положение элемента
         QPointF newPos = value.toPointF();
         QRectF rect = scene()->sceneRect();
         if (!rect.contains(newPos)) {

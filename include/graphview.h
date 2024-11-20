@@ -4,10 +4,10 @@
 #include <QGraphicsView>
 #include <QMessageBox>
 #include <QKeyEvent>
-#include <vertex.h>
-#include <edge.h>
-#include <dijkstraalgorithm.h>
-#include <styles.h>
+#include <include/vertex.h>
+#include <include/edge.h>
+#include <include/dijkstraalgorithm.h>
+#include <include/styles.h>
 
 class GraphView : public QGraphicsView
 {

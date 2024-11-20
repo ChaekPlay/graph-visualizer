@@ -1,4 +1,4 @@
-#include "setnumberdialog.h"
+#include "include/setnumberdialog.h"
 #include "ui_setnumberdialog.h"
 
 SetNumberDialog::SetNumberDialog(QWidget *parent)

@@ -9,26 +9,26 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    dijkstraalgorithm.cpp \
-    edge.cpp \
-    graphview.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    setnumberdialog.cpp \
-    vertex.cpp
+    src/dijkstraalgorithm.cpp \
+    src/edge.cpp \
+    src/graphview.cpp \
+    src/main.cpp \
+    src/mainwindow.cpp \
+    src/setnumberdialog.cpp \
+    src/vertex.cpp
 
 HEADERS += \
-    dijkstraalgorithm.h \
-    edge.h \
-    graphview.h \
-    mainwindow.h \
-    setnumberdialog.h \
-    styles.h \
-    vertex.h
+    include/dijkstraalgorithm.h \
+    include/edge.h \
+    include/graphview.h \
+    include/mainwindow.h \
+    include/setnumberdialog.h \
+    include/styles.h \
+    include/vertex.h
 
 FORMS += \
-    mainwindow.ui \
-    setnumberdialog.ui
+    ui/mainwindow.ui \
+    ui/setnumberdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

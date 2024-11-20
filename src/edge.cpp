@@ -1,5 +1,5 @@
-#include "edge.h"
-#include "styles.h"
+#include "include/edge.h"
+#include "include/styles.h"
 
 Vertex* Edge::getVertex1() const
 {
